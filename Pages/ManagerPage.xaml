@@ -32,10 +32,11 @@
                 </ComboBox>
 
                 <Label Content="Дата окончания:" FontSize="18px" FontWeight="SemiBold" Margin="500,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
-                <DatePicker x:Name="EndDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="740,110,0,0" Height="35" Width="230"/>
+                <DatePicker x:Name="EndDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="740,110,0,0" Height="35" Width="230" SelectedDateFormat="Short"/>
 
 
                 <Label Content="Комментарий:" FontSize="18px" FontWeight="SemiBold" Margin="500,260,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
+                <uc:Button1 x:Name="ShowComments" XAMLText="Посмотреть список" XAMLTextColor="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="650,260,0,0" MouseDown="ShowComments_MouseDown"/>
                 <TextBox x:Name="Comment" HorizontalAlignment="Left" Width="470"  Margin="500,300,0,60" TextWrapping="Wrap"/>
 
                 <Label Content="Тип проблемы:" FontSize="18px" FontWeight="SemiBold" Margin="10,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>

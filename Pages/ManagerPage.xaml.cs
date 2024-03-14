@@ -30,8 +30,10 @@ namespace UP._01.Pages
             if(curRequest.EndDate != null) EndDate.SelectedDate = curRequest.EndDate;
             Description.Text = curRequest.Description;
             StatusCB.SelectedIndex = curRequest.Status;
-            Comment.Text = curRequest.Comment;
+            //Comment.Text = curRequest.Comment;
             HeaderLabel.Content += $" пользователя {curRequest.Client.Name} № {curRequest.ID} от {curRequest.StartDate.ToString()}";
+            EndDate.DisplayDateStart = curRequest.StartDate;
+            EndDate.DisplayDate = curRequest.StartDate;
         }
         private void Back_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -78,6 +80,12 @@ namespace UP._01.Pages
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 
+        }
+
+        private void ShowComments_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Window CommentWindow = new Windows.Comments(curRequest);
+            CommentWindow.Show();
         }
     }
 }

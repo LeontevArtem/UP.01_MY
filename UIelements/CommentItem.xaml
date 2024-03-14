@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="UP._01.UIelements.CommentItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UP._01.UIelements"
+             mc:Ignorable="d">
+    <Border x:Name="Body"  CornerRadius="10" BorderThickness="0" Background="#00ABE4" Margin="10" >
+        <Grid>
+            <Label x:Name="ID" Content="Комментарий №" FontSize="18" Foreground="White" FontWeight="Bold" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="Request" Content="Заявка: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="Performer" Content="Ответственный: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="Comment" TextWrapping="Wrap" Text="Комментарий: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="13,135,0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        </Grid>
+
+    </Border>
+</UserControl>
