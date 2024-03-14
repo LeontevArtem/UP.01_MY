@@ -10,7 +10,8 @@
             <Label x:Name="ID" Content="Комментарий №" FontSize="18" Foreground="White" FontWeight="Bold" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <Label x:Name="Request" Content="Заявка: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <Label x:Name="Performer" Content="Ответственный: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="Comment" TextWrapping="Wrap" Text="Комментарий: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="13,135,0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="Comment" TextWrapping="Wrap" Text="Комментарий: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,175,0,10"    VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="Status" Content="Статус: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="7,135,0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         </Grid>
 
     </Border>

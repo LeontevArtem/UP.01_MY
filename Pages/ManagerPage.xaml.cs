@@ -72,7 +72,7 @@ namespace UP._01.Pages
                         }
                 }
                 MySQL.Query($"UPDATE `UP.01`.`Requests` SET `EndDate` = '{EndDatestr}', `Equipment` = '{EquipmentID}', `TypeOfProblem` = '{ProblemID}', `Description` = '{Descriptiontext}', `Performer` = '{PerformerID}', `Manager` = '{MainWindow.currentUser.ID}', `Status` = '{Status}' WHERE (`ID` = '{curRequest.ID}');");
-                MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`, `PerformerID`, `Comment`,`Status`) VALUES ('{curRequest.ID}', '{PerformerID}', 'Заявке №{curRequest.ID} назначен исполнитель {PerformerID}. CHAR(10)Комментарий: {Commenttext} CHAR(10)','{StatusT}');");
+                MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`, `PerformerID`, `Comment`,`Status`,`Date`) VALUES ('{curRequest.ID}', '{PerformerID}', 'Заявке №{curRequest.ID} назначен исполнитель {PerformerID}. CHAR(10)Комментарий: {Commenttext} CHAR(10)','{StatusT}','{DateTime.Now.ToString()}');");
                 mainWindow.LoadData();
                 (parrentPage as Pages.Main).ShowItems();
                 mainWindow.OpenPage(parrentPage);
@@ -86,6 +86,11 @@ namespace UP._01.Pages
         {
             Window CommentWindow = new Windows.Comments(curRequest);
             CommentWindow.Show();
+        }
+
+        private void BuyParts_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

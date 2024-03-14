@@ -150,6 +150,13 @@ namespace UP._01
                 catch { }
                 
                 requestHistory.Comment = HistoryQuery.GetString(3);
+                requestHistory.Status = HistoryQuery.GetString(4);
+                try
+                {
+                    requestHistory.Date = DateTime.Parse(HistoryQuery.GetString(5));
+                }
+                catch { }
+                
                 RequestHistories.Add(requestHistory);
             }
 

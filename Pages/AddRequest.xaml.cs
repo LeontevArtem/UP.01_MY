@@ -69,7 +69,7 @@ namespace UP._01.Pages
                 try
                 {
                     MySQL.Query($"UPDATE `UP.01`.`Requests` SET `Equipment` = '{EquipmentID}', `TypeOfProblem` = '{ProblemID}', `Description` = '{Descriptiontext}' WHERE (`ID` = '{curRequest.ID}');");
-                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`) VALUES ('{curRequest.ID}', 'Заявка изменена пользователем №{curRequest.Client.ID}'.'{StatusT}');");
+                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`,`Date`) VALUES ('{curRequest.ID}', 'Заявка изменена пользователем №{curRequest.Client.ID}'.'{StatusT}','{ DateTime.Now.ToString()}');");
                     mainWindow.LoadData();
                     (parrentPage as Pages.Main).ShowItems();
                     mainWindow.OpenPage(parrentPage);
@@ -86,7 +86,7 @@ namespace UP._01.Pages
                     MySqlDataReader db = MySQL.Query($"INSERT INTO `UP.01`.`Requests` (`StartDate`, `Equipment`, `TypeOfProblem`, `Description`, `Client`, `Status`) VALUES ('{StartDate}', '{EquipmentID}', '{ProblemID}', '{Descriptiontext}', '{ClientID}', '{Status}'); SELECT LAST_INSERT_ID()");
                     int ID = 0;
                     while (db.Read()) ID = db.GetInt32("LAST_INSERT_ID()");
-                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`) VALUES ('{ID}', 'Создана заявка №{ID} Клиентом №{ClientID} CHAR(10)','Создана');");
+                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`,`Date`) VALUES ('{ID}', 'Создана заявка №{ID} Клиентом №{ClientID} CHAR(10)','Создана','{DateTime.Now.ToString()}');");
                     mainWindow.LoadData();
                     (parrentPage as Pages.Main).ShowItems();
                     mainWindow.OpenPage(parrentPage);

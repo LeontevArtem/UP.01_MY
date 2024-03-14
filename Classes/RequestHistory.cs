@@ -12,5 +12,7 @@ namespace UP._01.Classes
         public Classes.Request Request { get; set; }
         public User Performer { get; set; }
         public string Comment {  get; set; }
+        public string Status{ get; set; }
+        public DateTime Date { get; set; }
     }
 }

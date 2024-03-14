@@ -26,10 +26,11 @@ namespace UP._01.UIelements
         {
             InitializeComponent();
             this.RequestHistory = requestHistory;
-            ID.Content += requestHistory.ID.ToString();
+            ID.Content += $"{requestHistory.ID.ToString()} от {requestHistory.Date.ToString()}";
             Request.Content += requestHistory.Request.ID.ToString();
             if (requestHistory.Performer != null) Performer.Content += requestHistory.Performer.Name;
             Comment.Text = requestHistory.Comment.Replace("CHAR(10)","\n");
+            Status.Content += requestHistory.Status;
         }
     }
 }
