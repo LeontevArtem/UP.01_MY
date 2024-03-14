@@ -8,12 +8,13 @@
              mc:Ignorable="d" >
     <Border x:Name="Body"  CornerRadius="10" BorderThickness="0" Background="#00ABE4" Margin="10" >
         <Grid>
-            <Label x:Name="Equipment" Content="Оборудование: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Label x:Name="TypeOfProblem" Content="Тип ошибки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="Description" TextWrapping="Wrap" Text="Описание ошибки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="13,95,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Label x:Name="Status" Content="Статус: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,130,0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Label x:Name="StartDate" Content="Дата подачи заявки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="200,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <Label x:Name="EndDate" Content="Дата завершения заявки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="200,50,0,10" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Label x:Name="ID" Content="Заявка №: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="Equipment" Content="Оборудование: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="TypeOfProblem" Content="Тип ошибки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="Description" TextWrapping="Wrap" Text="Описание ошибки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="13,135,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="Status" Content="Статус: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="10,170,0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="StartDate" Content="Дата подачи заявки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="200,50,0,10" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Label x:Name="EndDate" Content="Дата завершения заявки: " FontSize="18" Foreground="White" FontWeight="Bold" Margin="200,90,0,10" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <uc:Button1 x:Name="Delete" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" XAMLText="Удалить" XAMLBackgroundColor="Red" XAMLOnMouseEnterColor="DarkRed" XAMLTextColor="White" Panel.ZIndex="5" MouseDown="Delete_MouseDown" GotFocus="Delete_MouseEnter" LostFocus="Delete_MouseLeave"/>
         </Grid>
 

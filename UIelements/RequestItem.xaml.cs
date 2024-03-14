@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UP._01.UIelements
 {
@@ -29,19 +19,44 @@ namespace UP._01.UIelements
             this.curRequest = curRequest;
             this.mainWindow = mainWindow;
             this.parrentPage = parrentPage;
+            ID.Content += curRequest.ID.ToString();
             Equipment.Content += curRequest.Equipment.Name;
             TypeOfProblem.Content += curRequest.TypeOfProblem.Name;
             Description.Text += curRequest.Description;
-            Status.Content += curRequest.Status.ToString();
+            switch (curRequest.Status)
+            {
+                case 0:
+                    {
+                        Status.Content += "В ожидании";
+                        break;
+                    }
+                case 1:
+                    {
+                        Status.Content += "В работе";
+                        break;
+                    }
+                case 2:
+                    {
+                        Status.Content += "Выполнено";
+                        break;
+                    }
+            }
             StartDate.Content += curRequest.StartDate.ToString();
             if (curRequest.EndDate.ToString() != "01.01.0001 0:00:00") EndDate.Content += curRequest.EndDate.ToString();
-            else EndDate.Content += "Не завершена";
+            else EndDate.Content += "Дата не указана";
             Body.MouseDown += delegate { Border_MouseDown(); };
         }
         bool flag = true;
         private void Border_MouseDown()
         {
-            if(flag) mainWindow.OpenPage(new Pages.AddRequest(mainWindow, parrentPage, curRequest));
+            if (flag)
+            {
+                if (MainWindow.currentUser.Role == 1)
+                {
+                    mainWindow.OpenPage(new Pages.ManagerPage(mainWindow, parrentPage, curRequest));
+                }
+                else mainWindow.OpenPage(new Pages.AddRequest(mainWindow, parrentPage, curRequest));
+            }
         }
 
         private void Delete_MouseDown(object sender, MouseButtonEventArgs e)
@@ -49,7 +64,7 @@ namespace UP._01.UIelements
             flag = false;
             try
             {
-                if(MessageBox.Show("Вы уверены?","Предупреждение",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы уверены?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     MySQL.Query($"DELETE FROM `UP.01`.`Requests` WHERE (`ID` = '{curRequest.ID}');");
                     mainWindow.LoadData();
@@ -57,8 +72,8 @@ namespace UP._01.UIelements
                     mainWindow.OpenPage(parrentPage);
                 }
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
-            
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
         }
 
         private void Delete_MouseEnter(object sender, RoutedEventArgs e)

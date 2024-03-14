@@ -120,6 +120,12 @@ namespace UP._01
                 }
                 catch { }
                 new_items.Status = db.GetInt32(9);
+                try
+                {
+                    new_items.Comment = db.GetString(10);
+                }
+                catch { }
+                
                 RequestsList.Add(new_items);
             }
         }

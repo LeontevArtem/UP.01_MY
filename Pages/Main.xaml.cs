@@ -32,6 +32,7 @@ namespace UP._01.Pages
             AdminPanel.AddChildren(AddEquipment);
             AdminPanel.AddChildren(AddProblem);
             if (MainWindow.currentUser.Role != 3) AdminPanel.Visibility = System.Windows.Visibility.Hidden;
+            if (MainWindow.currentUser.Role == 1) HeaderLabel.Content += "(Manager)";
             ShowItems();
         }
         public void ShowItems()

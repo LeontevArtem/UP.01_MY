@@ -18,5 +18,6 @@ namespace UP._01.Classes
         public User Performer { get; set; }
         public User Manager { get; set; }
         public int Status { get; set; }
+        public string Comment { get; set; }
     }
 }
