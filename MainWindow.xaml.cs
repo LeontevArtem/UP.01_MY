@@ -100,13 +100,25 @@ namespace UP._01
                 Classes.Request new_items = new Classes.Request();
                 new_items.ID = db.GetInt32(0);
                 new_items.StartDate = DateTime.Parse(db.GetString(1));
-                new_items.EndDate = DateTime.Parse(db.GetString(2));
+                try
+                {
+                    new_items.EndDate = DateTime.Parse(db.GetString(2));
+                }
+                catch { }
                 new_items.Equipment = EquipmentsList.Find(x => x.ID == db.GetInt32(3));
                 new_items.TypeOfProblem = ProblemTypes.Find(x => x.ID == db.GetInt32(4));
                 new_items.Description = db.GetString(5);
                 new_items.Client = UsersList.Find(x => x.ID == db.GetInt32(6));
-                new_items.Performer = UsersList.Find(x => x.ID == db.GetInt32(7));
-                new_items.Manager = UsersList.Find(x => x.ID == db.GetInt32(8));
+                try
+                {
+                    new_items.Performer = UsersList.Find(x => x.ID == db.GetInt32(7));
+                }
+                catch { }
+                try
+                {
+                    new_items.Manager = UsersList.Find(x => x.ID == db.GetInt32(8));
+                }
+                catch { }
                 new_items.Status = db.GetInt32(9);
                 RequestsList.Add(new_items);
             }

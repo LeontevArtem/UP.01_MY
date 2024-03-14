@@ -1,0 +1,31 @@
+﻿<Page x:Class="UP._01.Pages.AddRequest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UP._01.Pages"
+      mc:Ignorable="d" 
+      xmlns:uc ="clr-namespace:WpfControlLibrary2.Elements;assembly=WpfControlLibrary2"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddRequest">
+
+    <Grid Background="White">
+        <Border x:Name="Header" Height="60" VerticalAlignment="Top" Background="#FFE0E0E0" CornerRadius="10" Margin="3">
+            <Grid x:Name="HeaderGrid">
+                <Label Margin="0,0,0,0" Content="Добавление заявки" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold"/>
+                <uc:Button1 x:Name="Back" VerticalAlignment="Center" HorizontalAlignment="Right" XAMLText="Назад" XAMLTextColor="White" Margin="10" MouseDown="Back_MouseDown"/>
+            </Grid>
+        </Border>
+        <Border x:Name="Body" Margin="3,66,3,3" CornerRadius="10"  Background="#FFE0E0E0">
+            <Grid x:Name="BodyGrid">
+                <Label Content="Выберите оборудование:" FontSize="18px" FontWeight="SemiBold" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
+                <ComboBox x:Name="EquipmentCB" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,10,0,0" Height="35" Width="230" DisplayMemberPath="Name"/>
+                <Label Content="Выберите тип проблемы:" FontSize="18px" FontWeight="SemiBold" Margin="10,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
+                <ComboBox x:Name="ProblemCB" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,60,0,0" Height="35" Width="230" DisplayMemberPath="Name"/>
+                <Label Content="Опишите вашу проблему:" FontSize="18px" FontWeight="SemiBold" Margin="10,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
+                <TextBox x:Name="Description"  Margin="10,150,10,60" TextWrapping="Wrap"/>
+                <uc:Button1 x:Name="Add" VerticalAlignment="Bottom" HorizontalAlignment="Left" XAMLText="Добавить" XAMLTextColor="White" Margin="10" MouseDown="Add_MouseDown"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

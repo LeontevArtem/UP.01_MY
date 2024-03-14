@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfControlLibrary2.Elements;
 
 namespace UP._01.Pages
 {
@@ -27,6 +17,21 @@ namespace UP._01.Pages
             InitializeComponent();
             this.mainWindow = mainWindow;
             this.parrentPage = parrentPage;
+            WpfControlLibrary2.Elements.Button1 AddEquipment = new WpfControlLibrary2.Elements.Button1()
+            {
+                XAMLText = "Добавить оборудование",
+                XAMLTextColor = Color.FromRgb(255, 255, 255),
+                Margin = new System.Windows.Thickness(5,60,5,0)
+            };
+            WpfControlLibrary2.Elements.Button1 AddProblem = new WpfControlLibrary2.Elements.Button1()
+            {
+                XAMLText = "Добавить тип проблемы",
+                XAMLTextColor = Color.FromRgb(255, 255, 255),
+                Margin = new System.Windows.Thickness(5, 5, 5, 0)
+            };
+            AdminPanel.AddChildren(AddEquipment);
+            AdminPanel.AddChildren(AddProblem);
+            if (MainWindow.currentUser.Role != 3) AdminPanel.Visibility = System.Windows.Visibility.Hidden;
             ShowItems();
         }
         public void ShowItems()
@@ -34,13 +39,22 @@ namespace UP._01.Pages
             parrent.Children.Clear();
             foreach (Classes.Request curRequest in MainWindow.RequestsList)
             {
-                if (MainWindow.currentUser.Role == 1 || MainWindow.currentUser.Role == 3) parrent.Children.Add(new UIelements.RequestItem(curRequest,mainWindow,this));
+                if (MainWindow.currentUser.Role == 1 || MainWindow.currentUser.Role == 3) parrent.Children.Add(new UIelements.RequestItem(curRequest, mainWindow, this));
+                else
+                {
+                    if (MainWindow.currentUser.ID == curRequest.Client.ID) parrent.Children.Add(new UIelements.RequestItem(curRequest, mainWindow, this));
+                }
             }
         }
 
         private void Logout_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            mainWindow.OpenPage(new Pages.Login(mainWindow,null));
+            mainWindow.OpenPage(new Pages.Login(mainWindow, null));
+        }
+
+        private void AddRequest_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainWindow.OpenPage(new Pages.AddRequest(mainWindow,this,null));
         }
     }
 }
