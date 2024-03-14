@@ -31,7 +31,7 @@ namespace UP._01.Pages
             Description.Text = curRequest.Description;
             StatusCB.SelectedIndex = curRequest.Status;
             Comment.Text = curRequest.Comment;
-            HeaderLabel.Content += $" пользователя {curRequest.Client.Name} № {curRequest.ID}";
+            HeaderLabel.Content += $" пользователя {curRequest.Client.Name} № {curRequest.ID} от {curRequest.StartDate.ToString()}";
         }
         private void Back_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -50,7 +50,27 @@ namespace UP._01.Pages
             int PerformerID = (PerformerCB.SelectedItem as User).ID;
             try
             {
-                MySQL.Query($"UPDATE `UP.01`.`Requests` SET `EndDate` = '{EndDatestr}', `Equipment` = '{EquipmentID}', `TypeOfProblem` = '{ProblemID}', `Description` = '{Descriptiontext}', `Performer` = '{PerformerID}', `Manager` = '{MainWindow.currentUser.ID}', `Status` = '{Status}', `Comment` = '{Commenttext}' WHERE (`ID` = '{curRequest.ID}');");
+                string StatusT = "";
+                switch (Status)
+                {
+                    case 0:
+                        {
+                            StatusT += "В ожидании";
+                            break;
+                        }
+                    case 1:
+                        {
+                            StatusT += "В работе";
+                            break;
+                        }
+                    case 2:
+                        {
+                            StatusT += "Выполнено";
+                            break;
+                        }
+                }
+                MySQL.Query($"UPDATE `UP.01`.`Requests` SET `EndDate` = '{EndDatestr}', `Equipment` = '{EquipmentID}', `TypeOfProblem` = '{ProblemID}', `Description` = '{Descriptiontext}', `Performer` = '{PerformerID}', `Manager` = '{MainWindow.currentUser.ID}', `Status` = '{Status}' WHERE (`ID` = '{curRequest.ID}');");
+                MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`, `PerformerID`, `Comment`,`Status`) VALUES ('{curRequest.ID}', '{PerformerID}', 'Заявке №{curRequest.ID} назначен исполнитель {PerformerID}. CHAR(10)Комментарий: {Commenttext} CHAR(10)','{StatusT}');");
                 mainWindow.LoadData();
                 (parrentPage as Pages.Main).ShowItems();
                 mainWindow.OpenPage(parrentPage);

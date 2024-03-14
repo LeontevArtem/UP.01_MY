@@ -34,6 +34,7 @@ namespace UP._01
         public static List<Classes.Request> RequestsList = new List<Classes.Request>();
         public static List<Equipment> EquipmentsList = new List<Equipment>();
         public static List<TypeOfProblem> ProblemTypes = new List<TypeOfProblem>();
+        public static List<RequestHistory> RequestHistories = new List<RequestHistory>();
         public static User currentUser;
         public void OpenPage(Page ToPage)
         {
@@ -59,6 +60,7 @@ namespace UP._01
             RequestsList.Clear();
             EquipmentsList.Clear();
             ProblemTypes.Clear();
+            RequestHistories.Clear();
             //Users
             MySqlDataReader UsersQuery = MySQL.Query("Select * from Users");
             while (UsersQuery.Read())
@@ -94,7 +96,7 @@ namespace UP._01
                 ProblemTypes.Add(new_problem);
             }
             //Requests
-            MySqlDataReader db = MySQL.Query("Select * from Requests");
+            MySqlDataReader db = MySQL.Query("SELECT * FROM `UP.01`.Requests;");
             while (db.Read())
             {
                 Classes.Request new_items = new Classes.Request();
@@ -120,14 +122,37 @@ namespace UP._01
                 }
                 catch { }
                 new_items.Status = db.GetInt32(9);
+                //try
+                //{
+                //    new_items.Comment = db.GetString(10);
+                //}
+                //catch { }
+                MySqlDataReader db1 = MySQL.Query($"Select * from `UP.01`.RequestHistory Where RequestHistory.RequestID = {new_items.ID} Order by RequestHistory.idRequestHistory desc LIMIT 1");
+                string comment = "";
+                while (db1.Read())
+                {
+                    comment = db1.GetString(3);
+                }
+                new_items.Comment = comment.Replace("CHAR(10)","\n");
+                RequestsList.Add(new_items);
+            }
+            //History
+            MySqlDataReader HistoryQuery = MySQL.Query("Select * from RequestHistory");
+            while (HistoryQuery.Read())
+            {
+                RequestHistory requestHistory = new RequestHistory();
+                requestHistory.ID = HistoryQuery.GetInt32(0);
+                requestHistory.Request = RequestsList.Find(x => x.ID == HistoryQuery.GetInt32(1));
                 try
                 {
-                    new_items.Comment = db.GetString(10);
+                    requestHistory.Performer = UsersList.Find(x => x.ID == HistoryQuery.GetInt32(2));
                 }
                 catch { }
                 
-                RequestsList.Add(new_items);
+                requestHistory.Comment = HistoryQuery.GetString(3);
+                RequestHistories.Add(requestHistory);
             }
+
         }
     }
 }

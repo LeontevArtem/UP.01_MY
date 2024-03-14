@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\RequestHistory.cs" />
     <Compile Include="Pages\AddRequest.xaml.cs">
       <DependentUpon>AddRequest.xaml</DependentUpon>
     </Compile>

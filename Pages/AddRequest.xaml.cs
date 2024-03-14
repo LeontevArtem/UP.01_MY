@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,11 +45,31 @@ namespace UP._01.Pages
             string Descriptiontext = Description.Text;
             int ClientID = MainWindow.currentUser.ID;
             int Status = 0;
+            string StatusT = "";
             if (curRequest != null)
             {
+                switch (curRequest.Status)
+                {
+                    case 0:
+                        {
+                            StatusT += "В ожидании";
+                            break;
+                        }
+                    case 1:
+                        {
+                            StatusT += "В работе";
+                            break;
+                        }
+                    case 2:
+                        {
+                            StatusT += "Выполнено";
+                            break;
+                        }
+                }
                 try
                 {
                     MySQL.Query($"UPDATE `UP.01`.`Requests` SET `Equipment` = '{EquipmentID}', `TypeOfProblem` = '{ProblemID}', `Description` = '{Descriptiontext}' WHERE (`ID` = '{curRequest.ID}');");
+                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`) VALUES ('{curRequest.ID}', 'Заявка изменена пользователем №{curRequest.Client.ID}'.'{StatusT}');");
                     mainWindow.LoadData();
                     (parrentPage as Pages.Main).ShowItems();
                     mainWindow.OpenPage(parrentPage);
@@ -62,7 +83,10 @@ namespace UP._01.Pages
                 
                 try
                 {
-                    MySQL.Query($"INSERT INTO `UP.01`.`Requests` (`StartDate`, `Equipment`, `TypeOfProblem`, `Description`, `Client`, `Status`) VALUES ('{StartDate}', '{EquipmentID}', '{ProblemID}', '{Descriptiontext}', '{ClientID}', '{Status}');");
+                    MySqlDataReader db = MySQL.Query($"INSERT INTO `UP.01`.`Requests` (`StartDate`, `Equipment`, `TypeOfProblem`, `Description`, `Client`, `Status`) VALUES ('{StartDate}', '{EquipmentID}', '{ProblemID}', '{Descriptiontext}', '{ClientID}', '{Status}'); SELECT LAST_INSERT_ID()");
+                    int ID = 0;
+                    while (db.Read()) ID = db.GetInt32("LAST_INSERT_ID()");
+                    MySQL.Query($"INSERT INTO `UP.01`.`RequestHistory` (`RequestID`,`Comment`,`Status`) VALUES ('{ID}', 'Создана заявка №{ID} Клиентом №{ClientID} CHAR(10)','Создана');");
                     mainWindow.LoadData();
                     (parrentPage as Pages.Main).ShowItems();
                     mainWindow.OpenPage(parrentPage);
