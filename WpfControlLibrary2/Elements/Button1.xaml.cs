@@ -26,10 +26,13 @@ namespace WpfControlLibrary2.Elements
         public Color XAMLBackgroundColor {  set { border.Background = new SolidColorBrush(value); BackgroundColor = value; } }
         public Color OnMouseEnterColor = WpfControlLibrary2.Resources.OnMouseEnterColor;
         public Color XAMLOnMouseEnterColor { set { OnMouseEnterColor = value; } }
+        public Color XAMLTextColor { set { Text.Foreground = new SolidColorBrush(value); } }
+        
         public string XAMLText { set { Text.Text = value; } }
         public Button1()
         {
             InitializeComponent();
+            
         }
         public string GetText()
         {
@@ -38,6 +41,10 @@ namespace WpfControlLibrary2.Elements
         public void SetText(string Text)
         {
             this.Text.Text = Text;
+        }
+        public void SetBackgroundColor(Color Color)
+        {
+            border.Background = new SolidColorBrush(Color);
         }
         private void border_MouseEnter(object sender, MouseEventArgs e)
         {

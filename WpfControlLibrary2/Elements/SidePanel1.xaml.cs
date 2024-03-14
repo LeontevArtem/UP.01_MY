@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,7 @@ namespace WpfControlLibrary2.Elements
         {
             InitializeComponent();
             this.orientation = PanelOrientation.left;
+            this.mode = PanelMode.close;
         }
 
 
@@ -65,28 +67,45 @@ namespace WpfControlLibrary2.Elements
         }
         private void menuicon_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //if (mode == PanelMode.close)
-            //{
-            //    mode = PanelMode.open;
-            //    SwitchControlPanel();
-            //}
-            //else if (mode == PanelMode.open) 
-            //{
-            //    mode = PanelMode.close;
-            //    SwitchControlPanel();
-            //}
             SwitchControlPanel();
-            //ControlPanelCount++;
         }
         public void SwitchImage(PanelMode mode)
         {
             if (mode == PanelMode.open)
             {
-                IconImg.Source = new BitmapImage(new Uri(""));
+                DoubleAnimation opacityAnimation = new DoubleAnimation();
+                opacityAnimation.From = 1;
+                opacityAnimation.To = 0;
+                opacityAnimation.Duration = TimeSpan.FromSeconds(0.1);
+                opacityAnimation.Completed += delegate
+                {
+                    DoubleAnimation opacityAnimation2 = new DoubleAnimation();
+                    opacityAnimation2.From = 0;
+                    opacityAnimation2.To = 0.75;
+                    opacityAnimation2.Duration = TimeSpan.FromSeconds(0.1);
+                    menuicon.BeginAnimation(Frame.OpacityProperty, opacityAnimation2);
+                    IconImg.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\..\\..\\WpfControlLibrary2\\Images\\cross.png"));
+                };
+                menuicon.BeginAnimation(Frame.OpacityProperty, opacityAnimation);
+                
             }
             else
             {
-                IconImg.Source = new BitmapImage(new Uri(""));
+                DoubleAnimation opacityAnimation = new DoubleAnimation();
+                opacityAnimation.From = 1;
+                opacityAnimation.To = 0;
+                opacityAnimation.Duration = TimeSpan.FromSeconds(0.1);
+                opacityAnimation.Completed += delegate
+                {
+                    DoubleAnimation opacityAnimation2 = new DoubleAnimation();
+                    opacityAnimation2.From = 0;
+                    opacityAnimation2.To = 1;
+                    opacityAnimation2.Duration = TimeSpan.FromSeconds(0.1);
+                    menuicon.BeginAnimation(Frame.OpacityProperty, opacityAnimation2);
+                    IconImg.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\..\\..\\WpfControlLibrary2\\Images\\menuicon.png"));
+                };
+                menuicon.BeginAnimation(Frame.OpacityProperty, opacityAnimation);
+                
             }
         }
         public void SwitchControlPanel()
@@ -100,8 +119,7 @@ namespace WpfControlLibrary2.Elements
             CloseAnimationLeft.From = new Thickness(ControlPanelBorder.Margin.Left, ControlPanelBorder.Margin.Top, ControlPanelBorder.Margin.Right, ControlPanelBorder.Margin.Bottom);
             CloseAnimationLeft.To = new Thickness(-200, ControlPanelBorder.Margin.Top, ControlPanelBorder.Margin.Right, ControlPanelBorder.Margin.Bottom);
             CloseAnimationLeft.Duration = TimeSpan.FromSeconds(0.3);
-            //OpenAnimationLeft.BeginAnimation(MarginProperty, OpenAnimationLeft);
-
+            SwitchImage(mode);
             if (mode == PanelMode.open)
             {
                 if (orientation == PanelOrientation.right)
@@ -110,7 +128,7 @@ namespace WpfControlLibrary2.Elements
                 }
                 else
                 {
-                    //OpenAnimationLeft.BeginAnimation();
+                    OpenAnimationLeft.BeginAnimation(MarginProperty, OpenAnimationLeft);
                     ControlPanelBorder.BeginAnimation(MarginProperty, OpenAnimationLeft);
                     mode = PanelMode.close;
                 }
@@ -123,7 +141,7 @@ namespace WpfControlLibrary2.Elements
                 }
                 else
                 {
-                    //CloseAnimationLeft.BeginAnimation(MarginProperty, OpenAnimationLeft);
+                    CloseAnimationLeft.BeginAnimation(MarginProperty, OpenAnimationLeft);
                     ControlPanelBorder.BeginAnimation(MarginProperty, CloseAnimationLeft);
                     mode = PanelMode.open;
                 }

@@ -13,6 +13,7 @@
         <Border x:Name="Header" Height="60" VerticalAlignment="Top" Background="#FFE0E0E0" CornerRadius="10" Margin="3">
             <Grid x:Name="HeaderGrid">
                 <Label Content="Система учета заявок на ремонт оборудования" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold"/>
+                <uc:Button1 x:Name="Logout" XAMLText="Выйти" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" XAMLTextColor="White" MouseDown="Logout_MouseDown"/>
             </Grid>
         </Border>
         <Border x:Name="Body" Margin="3,66,3,3" CornerRadius="10"  Background="#FFE0E0E0">

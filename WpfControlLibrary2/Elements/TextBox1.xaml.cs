@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -25,6 +27,18 @@ namespace WpfControlLibrary2.Elements
         {
             this.Text.Text = Text;
         }
+        public async Task ShowError(int Duration)
+        {
+            Border.BorderBrush = new SolidColorBrush(Color.FromRgb(255,0,0));
+            OnMouseEnterColor = Color.FromRgb(255, 0, 0);
+            BackgroundColor = Color.FromRgb(255, 0, 0);
+            await Task.Delay(Duration*1000);
+            Border.BorderBrush = new SolidColorBrush(BackgroundColor);
+            BackgroundColor = WpfControlLibrary2.Resources.BackgroundColor;
+            OnMouseEnterColor = WpfControlLibrary2.Resources.OnMouseEnterColor;
+            Border.BorderBrush = new SolidColorBrush(BackgroundColor);
+        }
+        
         public void BackgroundOnEnter()
         {
             SolidColorBrush BackgroundBrush = new SolidColorBrush(OnMouseEnterColor);

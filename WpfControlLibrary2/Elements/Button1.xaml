@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:WpfControlLibrary2.Elements"
              x:Class="WpfControlLibrary2.Elements.Button1"
              mc:Ignorable="d" 
-             MinWidth="30" MinHeight="30" MaxHeight="30">
-    <Grid>
+             MinWidth="34" MinHeight="34">
+    <Grid Margin="2">
         <Border x:Name="border" Margin="0,0,0,0"  RenderTransformOrigin="0.5 0.5"  CornerRadius="8" Background="#00ABE4"  MouseEnter="border_MouseEnter" MouseLeave="border_MouseLeave">
             <Border.RenderTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -79,7 +79,7 @@
                 </EventTrigger>
             </Border.Triggers>
             <Grid>
-                <Border VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Margin="0,0,0,0" BorderThickness="0" >
+                <Border VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Margin="0,0,0,0" BorderThickness="0">
                     <Border.Background>
                         <ImageBrush  x:Name="crossimg" ImageSource="/WpfControlLibrary2;component/Images/error.png" Stretch="Uniform" Opacity="0"/>
                     </Border.Background>

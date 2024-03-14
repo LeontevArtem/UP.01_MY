@@ -10,7 +10,7 @@
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden">
                     <StackPanel>
-                        <TextBox x:Name="Text"  Margin="5,0,5,0" Text="text" Background="Transparent" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" BorderThickness="0" GotFocus="Text_GotFocus" LostFocus="Text_LostFocus"/>
+                        <TextBox x:Name="Text"  Margin="5,0,5,0" Text="" Background="Transparent" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" TextWrapping="WrapWithOverflow" BorderThickness="0" GotFocus="Text_GotFocus" LostFocus="Text_LostFocus"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

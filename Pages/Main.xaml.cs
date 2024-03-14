@@ -20,9 +20,27 @@ namespace UP._01.Pages
     /// </summary>
     public partial class Main : Page
     {
-        public Main()
+        MainWindow mainWindow;
+        Page parrentPage;
+        public Main(MainWindow mainWindow, Page parrentPage)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+            this.parrentPage = parrentPage;
+            ShowItems();
+        }
+        public void ShowItems()
+        {
+            parrent.Children.Clear();
+            foreach (Classes.Request curRequest in MainWindow.RequestsList)
+            {
+                if (MainWindow.currentUser.Role == 1 || MainWindow.currentUser.Role == 3) parrent.Children.Add(new UIelements.RequestItem(curRequest,mainWindow,this));
+            }
+        }
+
+        private void Logout_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainWindow.OpenPage(new Pages.Login(mainWindow,null));
         }
     }
 }

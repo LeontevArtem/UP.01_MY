@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="UP._01.UIelements.RequestItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UP._01.UIelements"
+             mc:Ignorable="d" >
+    <Border  CornerRadius="10" BorderThickness="0" Background="#00ABE4" Margin="10">
+        <Grid>
+            <Label x:Name="Equipment" Content="Оборудование: " FontSize="18" Foreground="Black" FontWeight="Bold" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="TypeOfProblem" Content="Тип ошибки: " FontSize="18" Foreground="Black" FontWeight="Bold" Margin="10,50,0,0" VerticalAlignment="Top"/>
+            <TextBlock x:Name="Description" TextWrapping="Wrap" Text="Описание ошибки: " FontSize="18" Foreground="Black" FontWeight="Bold" Margin="13,95,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="Status" Content="Статус: " FontSize="18" Foreground="Black" FontWeight="Bold" Margin="10,130,0,10" VerticalAlignment="Top"/>
+        </Grid>
+
+    </Border>
+</UserControl>

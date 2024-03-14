@@ -11,10 +11,10 @@
             <Image x:Name="IconImg"  Source="menuicon.png" Margin="7"/>
         </Border>
 
-        <Border x:Name="ControlPanelBorder" Width="190" HorizontalAlignment="Left" Background="Gray" Margin="-200,5,5,5" CornerRadius="10" Panel.ZIndex="0">
-            <Grid x:Name="Children">
+        <Border x:Name="ControlPanelBorder" Width="190" HorizontalAlignment="Left" Background="#E9F1FA" Margin="-200,5,5,5" CornerRadius="10" Panel.ZIndex="0">
+            <StackPanel x:Name="Children">
 
-            </Grid>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

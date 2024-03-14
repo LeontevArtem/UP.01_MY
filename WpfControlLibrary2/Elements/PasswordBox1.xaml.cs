@@ -30,6 +30,17 @@ namespace WpfControlLibrary2.Elements
         {
             return Text.Password;
         }
+        public async Task ShowError(int Duration)
+        {
+            Border.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            OnMouseEnterColor = Color.FromRgb(255, 0, 0);
+            BackgroundColor = Color.FromRgb(255, 0, 0);
+            await Task.Delay(Duration * 1000);
+            Border.BorderBrush = new SolidColorBrush(BackgroundColor);
+            BackgroundColor = WpfControlLibrary2.Resources.BackgroundColor;
+            OnMouseEnterColor = WpfControlLibrary2.Resources.OnMouseEnterColor;
+            Border.BorderBrush = new SolidColorBrush(BackgroundColor);
+        }
         public void BackgroundOnEnter()
         {
             SolidColorBrush BackgroundBrush = new SolidColorBrush(OnMouseEnterColor);
