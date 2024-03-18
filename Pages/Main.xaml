@@ -14,6 +14,7 @@
             <Grid x:Name="HeaderGrid">
                 <Label x:Name="HeaderLabel" Margin="60,0,0,0" Content="Система учета заявок на ремонт оборудования" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold"/>
                 <uc:Button1 x:Name="Logout" XAMLText="Выйти" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" XAMLTextColor="White" MouseDown="Logout_MouseDown"/>
+                <uc:Button1 x:Name="Statistic" XAMLText="Моя статистика" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,10,100,10" XAMLTextColor="White" MouseDown="Statistic_MouseDown"/>
             </Grid>
         </Border>
         <Border x:Name="Body" Margin="3,66,3,3" CornerRadius="10"  Background="#FFE0E0E0">

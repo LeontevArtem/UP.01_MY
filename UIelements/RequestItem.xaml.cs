@@ -19,6 +19,7 @@ namespace UP._01.UIelements
             this.curRequest = curRequest;
             this.mainWindow = mainWindow;
             this.parrentPage = parrentPage;
+            if (MainWindow.currentUser.Role != 2 || curRequest.Status != 0) Accept.Visibility = Visibility.Hidden;
             ID.Content += curRequest.ID.ToString();
             Equipment.Content += curRequest.Equipment.Name;
             TypeOfProblem.Content += curRequest.TypeOfProblem.Name;
@@ -45,6 +46,15 @@ namespace UP._01.UIelements
             if (curRequest.EndDate.ToString() != "01.01.0001 0:00:00") EndDate.Content += curRequest.EndDate.ToString();
             else EndDate.Content += "Дата не указана";
             Body.MouseDown += delegate { Border_MouseDown(); };
+            if (curRequest.Status == 2 && MainWindow.currentUser.Role == 0)
+            {
+                Data.IsEnabled = false;
+                Data.Opacity = 0.5;
+                Body.IsEnabled = false;
+                QRCodeImg.Source = Classes.QRCode.CreateBitmapCode("https://forms.gle/a3tZf9fCMtEh57Lu7");
+                ImgGrid.IsEnabled = true;
+                
+            }
         }
         bool flag = true;
         private void Border_MouseDown()
@@ -86,6 +96,22 @@ namespace UP._01.UIelements
         {
             flag = true;
 
+        }
+
+        private void Accept_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            flag = false;
+            try
+            {
+                if (MessageBox.Show("Вы уверены, что хотите принять заявку?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    MySQL.Query($"UPDATE `UP.01`.`Requests` SET `Performer` = '{MainWindow.currentUser.ID}', `Status` = '{1}' WHERE (`ID` = '{curRequest.ID}');");
+                    mainWindow.LoadData();
+                    (parrentPage as Pages.Main).ShowItems();
+                    mainWindow.OpenPage(parrentPage);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

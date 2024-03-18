@@ -30,6 +30,7 @@ namespace UP._01.Pages
                 Description.Text = curRequest.Description;
                 Add.SetText("Сохранить");
             }
+            
         }
 
         private void Back_MouseDown(object sender, MouseButtonEventArgs e)

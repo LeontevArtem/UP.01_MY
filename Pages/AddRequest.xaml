@@ -22,6 +22,7 @@
                 <ComboBox x:Name="EquipmentCB" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,10,0,0" Height="35" Width="230" DisplayMemberPath="Name"/>
                 <Label Content="Выберите тип проблемы:" FontSize="18px" FontWeight="SemiBold" Margin="10,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
                 <ComboBox x:Name="ProblemCB" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,60,0,0" Height="35" Width="230" DisplayMemberPath="Name"/>
+                
                 <Label Content="Опишите вашу проблему:" FontSize="18px" FontWeight="SemiBold" Margin="10,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="35"/>
                 <TextBox x:Name="Description"  Margin="10,150,10,60" TextWrapping="Wrap"/>
                 <uc:Button1 x:Name="Add" VerticalAlignment="Bottom" HorizontalAlignment="Left" XAMLText="Добавить" XAMLTextColor="White" Margin="10" MouseDown="Add_MouseDown"/>

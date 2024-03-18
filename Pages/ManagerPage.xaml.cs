@@ -28,6 +28,7 @@ namespace UP._01.Pages
             PerformerCB.ItemsSource = MainWindow.UsersList;
             if (curRequest.Performer != null) PerformerCB.SelectedItem = MainWindow.UsersList.Find(x => x.ID == curRequest.Performer.ID);
             if(curRequest.EndDate != null) EndDate.SelectedDate = curRequest.EndDate;
+            if (curRequest.Status != 2) Report.Visibility = Visibility.Hidden;
             Description.Text = curRequest.Description;
             StatusCB.SelectedIndex = curRequest.Status;
             //Comment.Text = curRequest.Comment;
@@ -91,6 +92,11 @@ namespace UP._01.Pages
         private void BuyParts_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Report_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PDFClass.CreatePDF(curRequest.ID.ToString(), curRequest.StartDate.ToString(), curRequest.Equipment.Name, (curRequest.EndDate - curRequest.StartDate).ToString(),curRequest.Performer.Name);
         }
     }
 }
